@@ -6,7 +6,7 @@
  */
 
 
-#include "Event.h"
+#include "../StRoot/MyAnalysisMaker/Event.h"
 
 
 // Structors

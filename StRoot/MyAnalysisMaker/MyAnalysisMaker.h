@@ -1,6 +1,8 @@
 #ifndef MyAnalysisMaker_def
 #define MyAnalysisMaker_def
 
+#include <vector>
+
 #include "StMuDSTMaker/COMMON/StMuTrack.h"
 #include "StMuDSTMaker/COMMON/StMuEvent.h"
 #include "StMaker.h"
@@ -10,6 +12,10 @@
 #include "TH3F.h"
 #include "TVector2.h"
 #include "TVector3.h"
+#include "Event.h"
+#include "Track.h"
+
+using namespace std;
 
 class StMuDstMaker  ;
 class TFile         ;
@@ -23,7 +29,8 @@ class TProfile2D    ;
 class TLorentzVector;
 class TTree;
 class TClonesArray;
-class nsmEvent;
+class Event;
+class Track;
 
 
 
@@ -53,10 +60,9 @@ private:
     StMuDstMaker      *mMuDstMaker;                   //  Make MuDst pointer available to member functions
     TFile*        histogram_output;                   //  Histograms outputfile pointer
 
-
-    TClonesArray* protonArr;
-    nsmEvent* levent;
-    TTree* nsmTree;
+    Event* event;
+    vector<Track>* track_vec;
+    TTree* tree;
 
     
     UInt_t        mEventsProcessed;                   //  Number of Events read and processed

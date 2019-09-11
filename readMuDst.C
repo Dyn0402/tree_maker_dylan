@@ -2,7 +2,7 @@
 void readMuDst(TString InputFileList, TString OutputDir, int energy)
 {
     
-    Int_t nFiles = 1e+4;
+    Int_t nFiles = 1e+3;
     
     // Load libraries
     gROOT ->Macro("loadMuDst.C");
@@ -15,6 +15,8 @@ void readMuDst(TString InputFileList, TString OutputDir, int energy)
     gSystem->Load("MyAnalysisMaker") ;
     //    gSystem->Load("StRefMultCorr");
     gSystem->Load("StBTofUtil");
+//    gSystem->Load("Track");
+//    gSystem->Load("Event");
     
     // List of member links in the chain
     StChain*                    chain  =  new StChain ;
@@ -31,7 +33,8 @@ void readMuDst(TString InputFileList, TString OutputDir, int energy)
     AnalysisCode -> SetOutputFileName(OutputDir) ;
     AnalysisCode -> SetEnergy(energy) ;
     
-    Int_t nEvents = 1e5;
+//    Int_t nEvents = 1e5;
+    Int_t nEvents = -1;
     
     nEvents = muDstMaker->chain()->GetEntries();
     
