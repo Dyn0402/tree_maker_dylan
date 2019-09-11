@@ -57,7 +57,7 @@ Int_t MyAnalysisMaker::Init()
     //-----------------------------------------------------------------------------------------
     histogram_output = new TFile(OutputFileName,"RECREATE") ;  //
     
-    tree = new TTree("proton_tree");//
+    tree = new TTree("proton_tree", "proton_tree");//
 
     track_vec = new vector<Track>;
     tree->Branch("Proton", &track_vec, 256000, 99);//
