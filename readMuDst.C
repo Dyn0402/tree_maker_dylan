@@ -23,6 +23,9 @@ void readMuDst(TString InputFileList, TString OutputDir, int energy)
     gSystem->Load("StBTofUtil");
     gSystem->Load("Track");
     gSystem->Load("Event");
+    gInterpreter->GenerateDictionary("Event", "Event.h");
+    gInterpreter->GenerateDictionary("Track", "Track.h");
+    gInterpreter->GenerateDictionary("vector<Track>", "Track.h;vector");
     
     // List of member links in the chain
     StChain*                    chain  =  new StChain ;
