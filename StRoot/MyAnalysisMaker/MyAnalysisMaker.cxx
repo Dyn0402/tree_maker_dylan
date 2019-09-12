@@ -24,7 +24,7 @@
 #include "TVector3.h"
 #include "TObjArray.h"
 #include "TComplex.h"
-#include "Event.h"
+#include "DEvent.h"
 #include "Track.h"
 #include "TClonesArray.h"
 #include "TTree.h"
@@ -62,7 +62,7 @@ Int_t MyAnalysisMaker::Init()
     track_vec = new vector<Track>;
     tree->Branch("Proton", &track_vec, 256000, 99);//
 
-    event = new Event;//
+    event = new DEvent;//
     tree->Branch("Event", &event, 256000, 99);//
     
 //    VertexZPos = -100.0;
