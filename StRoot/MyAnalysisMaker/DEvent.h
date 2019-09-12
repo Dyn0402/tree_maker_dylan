@@ -5,8 +5,8 @@
  *      Author: Dylan Neff
  */
 
-#ifndef EVENT_H_
-#define EVENT_H_
+#ifndef DEVENT_H_
+#define DEVENT_H_
 
 
 #include <vector>
@@ -14,11 +14,11 @@
 using namespace std;
 
 
-class Event {
+class DEvent {
 public:
-	Event();
-	Event(double vtx_x, double vtx_y, double vtx_z, unsigned nprim, unsigned run, unsigned ref2, unsigned btof_multi);
-	~Event();
+	DEvent();
+	DEvent(double vtx_x, double vtx_y, double vtx_z, unsigned nprim, unsigned run, unsigned ref2, unsigned btof_multi);
+	~DEvent();
 
 	double get_vtx_x();
 	double get_vtx_y();
@@ -52,4 +52,4 @@ private:
 
 
 
-#endif /* EVENT_H_ */
+#endif /* DEVENT_H_ */
