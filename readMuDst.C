@@ -1,9 +1,9 @@
 //#include "./StRoot/MyAnalysisMaker/Event.h"
 //#include "./StRoot/MyAnalysisMaker/Track.h"
 
-#ifdef __MAKECINT__
-#pragma link C++ class vector<Track>+;
-#endif
+//#ifdef __MAKECINT__
+//#pragma link C++ class vector<Track>+;
+//#endif
 
 void readMuDst(TString InputFileList, TString OutputDir, int energy)
 {
@@ -21,11 +21,11 @@ void readMuDst(TString InputFileList, TString OutputDir, int energy)
     gSystem->Load("MyAnalysisMaker") ;
     //    gSystem->Load("StRefMultCorr");
     gSystem->Load("StBTofUtil");
-    gSystem->Load("Track");
-    gSystem->Load("Event");
-    gInterpreter->GenerateDictionary("Event", "Event.h");
-    gInterpreter->GenerateDictionary("Track", "Track.h");
-    gInterpreter->GenerateDictionary("vector<Track>", "Track.h;vector");
+//    gSystem->Load("Track");
+//    gSystem->Load("Event");
+//    gInterpreter->GenerateDictionary("Event", "Event.h");
+//    gInterpreter->GenerateDictionary("Track", "Track.h");
+//    gInterpreter->GenerateDictionary("vector<Track>", "Track.h;vector");
     
     // List of member links in the chain
     StChain*                    chain  =  new StChain ;
