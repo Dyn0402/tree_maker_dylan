@@ -7,6 +7,7 @@
 #include "TTree.h"
 #include "TRandom3.h"
 #include "TBranch.h"
+#include "TROOT.h"
 
 #include "Track.h"
 #include "DEvent.h"
@@ -20,6 +21,8 @@ void real_tree_test();
 
 
 int Class_Test() {
+	gROOT->ProcessLine(".L DEvent.cpp+");
+	gROOT->ProcessLine(".L Track.cpp+");
 //	vec_tree_test();
 	real_tree_test();
 	return(0);
