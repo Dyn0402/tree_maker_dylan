@@ -6,7 +6,7 @@
  */
 
 
-#include "../StRoot/MyAnalysisMaker/Track.h"
+#include "Track.h"
 
 
 // Structors
