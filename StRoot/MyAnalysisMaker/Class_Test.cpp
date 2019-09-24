@@ -20,10 +20,13 @@ void vec_tree_test();
 void real_tree_test();
 
 
-int Class_Test() {
+int Class_Test(TString InputFileList, TString OutputDir, int energy) {
 //	gROOT->ProcessLine(".L DEvent.cpp+");
 //	gROOT->ProcessLine(".L Track.cpp+");
 //	vec_tree_test();
+	cout << "InputFileList: " << InputFileList << endl;
+	cout << "OutputDir: " << OutputDir << endl;
+	cout << "Energy:" << energy << endl;
 	real_tree_test();
 	return(0);
 }
