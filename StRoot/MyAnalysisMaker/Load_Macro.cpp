@@ -21,7 +21,7 @@ int Class_Test();
 int Load_Macro() {
 	gROOT->ProcessLine(".L DEvent.cpp+");
 	gROOT->ProcessLine(".L Track.cpp+");
-	gROOT->ProcessLine(".L Class_Test.cpp+");
+	gROOT->ProcessLine(".L Class_Test.cpp");
 //	vec_tree_test();
 	Class_Test();
 	return(0);
