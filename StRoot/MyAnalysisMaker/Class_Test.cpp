@@ -84,7 +84,7 @@ void real_tree_test() {
 
 
 	// Read
-	TFile *rfile = new TFile("/home/dylan/Desktop/real_tree_test.root", "READ");
+	TFile *rfile = new TFile("/star/u/dneff/Documents/real_tree_test.root", "READ");
 
 	if(!rfile) { cout << "Could not open file" << endl; return; }
 
