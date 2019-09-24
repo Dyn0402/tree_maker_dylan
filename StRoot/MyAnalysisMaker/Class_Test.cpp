@@ -6,6 +6,7 @@
 #include "TFile.h"
 #include "TTree.h"
 #include "TRandom3.h"
+#include "TBranch.h"
 
 #include "Track.h"
 #include "DEvent.h"
@@ -92,16 +93,16 @@ void real_tree_test() {
 //	Event *revent;
 //	vector<Track> *rtracks;
 
-	DEvent *revent = new Event;
+	DEvent *revent = new DEvent;
 	vector<Track> *rtracks = new vector<Track>;
 
-	auto bevent = rtree->GetBranch("event");
-	auto btrack_vec = rtree->GetBranch("track_vec");
+	TBranch* bevent = rtree->GetBranch("event");
+	TBranch* btrack_vec = rtree->GetBranch("track_vec");
 
 	bevent->SetAddress(&revent);
 	btrack_vec->SetAddress(&rtracks);
 
-	auto nevent = rtree->GetEntries();
+	int nevent = rtree->GetEntries();
 	cout << nevent << endl;
 
 //	rtree->GetEvent(100);
