@@ -29,10 +29,6 @@
 #include "TClonesArray.h"
 #include "TTree.h"
 
-#ifdef __MAKECINT__
-#pragma link C++ class vector<Track>+;
-#endif
-
 
 using namespace std;
 

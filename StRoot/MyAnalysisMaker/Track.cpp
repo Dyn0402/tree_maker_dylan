@@ -6,7 +6,14 @@
  */
 
 
+#include <vector>
+
 #include "Track.h"
+
+
+#ifdef __MAKECINT__
+#pragma link C++ class vector<Track>+;
+#endif
 
 
 // Structors
