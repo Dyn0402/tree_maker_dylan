@@ -6,7 +6,7 @@
  */
 
 
-#include "../StRoot/MyAnalysisMaker/DEvent.h"
+#include "DEvent.h"
 
 
 // Structors
