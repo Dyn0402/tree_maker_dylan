@@ -21,8 +21,8 @@ void readMuDst(TString InputFileList, TString OutputDir, int energy)
     gSystem->Load("MyAnalysisMaker") ;
     //    gSystem->Load("StRefMultCorr");
     gSystem->Load("StBTofUtil");
-//    gSystem->Load("Track");
-//    gSystem->Load("Event");
+    gSystem->Load(".StRoot/MyanalysisMaker/Track_cpp.so");
+    gSystem->Load(".StRoot/MyanalysisMaker/DEvent_cpp.so");
 //    gInterpreter->GenerateDictionary("Event", "Event.h");
 //    gInterpreter->GenerateDictionary("Track", "Track.h");
 //    gInterpreter->GenerateDictionary("vector<Track>", "Track.h;vector");
