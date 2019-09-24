@@ -21,8 +21,8 @@ void real_tree_test();
 
 
 int Class_Test() {
-	gROOT->ProcessLine(".L DEvent.cpp+");
-	gROOT->ProcessLine(".L Track.cpp+");
+//	gROOT->ProcessLine(".L DEvent.cpp+");
+//	gROOT->ProcessLine(".L Track.cpp+");
 //	vec_tree_test();
 	real_tree_test();
 	return(0);
