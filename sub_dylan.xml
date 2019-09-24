@@ -23,13 +23,13 @@
   <stderr URL="file:/gpfs01/star/pwg/dneff/scratch/check2/log/&energy;GeV/err_&energy;GeV$JOBID.err"></stderr>
   <stdout URL="file:/gpfs01/star/pwg/dneff/scratch/check2/log/&energy;GeV/log_&energy;GeV$JOBID.out" />
 
-    <output fromScratch="*.root" toURL="file:/gpfs01/star/pwg/dneff/scratch/check2/output/&energy;GeV/" />
-    <output fromScratch="*.log" toURL="file:/gpfs01/star/pwg/dneff/scratch/check2/log/" />
+    <output fromScratch="*.root" toURL="file:/gpfs01/star/pwg/dneff/scratch/check/output/&energy;GeV/" />
+    <output fromScratch="*.log" toURL="file:/gpfs01/star/pwg/dneff/scratch/check/log/" />
  
   <Generator>
-    <Location>/gpfs01/star/pwg/dneff/scratch/check2/log/</Location>
-    <ScriptLocation>/gpfs01/star/pwg/dneff/scratch/check2/script/11GeV/</ScriptLocation>
-    <ListLocation>/gpfs01/star/pwg/dneff/scratch/check2/list/11GeV/</ListLocation>
+    <Location>/gpfs01/star/pwg/dneff/scratch/check/log/</Location>
+    <ScriptLocation>/gpfs01/star/pwg/dneff/scratch/check/script/11GeV/</ScriptLocation>
+    <ListLocation>/gpfs01/star/pwg/dneff/scratch/check/list/11GeV/</ListLocation>
   </Generator>
   
 </job>
