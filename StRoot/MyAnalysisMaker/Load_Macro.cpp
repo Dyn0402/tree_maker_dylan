@@ -13,7 +13,8 @@ int Load_Macro(TString InputFileList, TString OutputDir, int energy) {
 	gROOT->ProcessLine(".L Class_Test.cpp+");
 	ostringstream energy_str;
 	energy_str << energy;
-	std::string line = ".x Class_Test(\"" + InputFileList + "\", \"" + OutputDir + "\", " + energy_str.str() + ")";
+	std::string line = ".x Class_Test(\"" + InputFileList + "\", \"" + OutputDir + "\", ";
+	line += energy_str.str() + ")";
 	gROOT->ProcessLine(line.data());
 	return(0);
 }
