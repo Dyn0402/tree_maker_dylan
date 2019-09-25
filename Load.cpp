@@ -8,8 +8,8 @@
 
 
 int Load(TString InputFileList, TString OutputDir, int energy) {
-	gROOT->ProcessLine(".L ./StRoot/MyAnalysisMaker/Event.cpp+");
-	gROOT->ProcessLine(".L ./StRoot/MyAnalysisMaker/Track.cpp+");
+//	gROOT->ProcessLine(".L ./StRoot/MyAnalysisMaker/Event.cpp+");
+//	gROOT->ProcessLine(".L ./StRoot/MyAnalysisMaker/Track.cpp+");
 //	gROOT->ProcessLine(".L readMuDst.C+");
 	ostringstream energy_str;
 	energy_str << energy;
