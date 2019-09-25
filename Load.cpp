@@ -10,11 +10,11 @@
 int Load(TString InputFileList, TString OutputDir, int energy) {
 	gROOT->ProcessLine(".L ./StRoot/MyAnalysisMaker/Event.cpp+");
 	gROOT->ProcessLine(".L ./StRoot/MyAnalysisMaker/Track.cpp+");
-	gROOT->ProcessLine(".L readMuDst.C+");
+//	gROOT->ProcessLine(".L readMuDst.C+");
 	ostringstream energy_str;
 	energy_str << energy;
-	std::string line = "readMuDst(\"" + InputFileList + "\", \"" + OutputDir + "\", ";
-	line += energy_str.str() + ")";
+	std::string line = "root4star \'readMuDst(\"" + InputFileList + "\", \"" + OutputDir + "\", ";
+	line += energy_str.str() + ")\'";
 	cout << line << endl;
 	gROOT->ProcessLine(line.data());
 	return(0);
