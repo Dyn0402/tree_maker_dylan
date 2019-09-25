@@ -6,12 +6,12 @@
  */
 
 
-#include "DEvent.h"
+#include "Event.h"
 
 
 // Structors
 
-DEvent::DEvent() {
+Event::Event() {
 	vtx_x = 0;
 	vtx_y = 0;
 	vtx_z = 0;
@@ -21,7 +21,7 @@ DEvent::DEvent() {
 	btof_multi = 0;
 }
 
-DEvent::DEvent(double vtx_x, double vtx_y, double vtx_z, unsigned nprim, unsigned run, unsigned ref2, unsigned btof_multi) {
+Event::Event(double vtx_x, double vtx_y, double vtx_z, unsigned nprim, unsigned run, unsigned ref2, unsigned btof_multi) {
 	this->vtx_x = vtx_x;
 	this->vtx_y = vtx_y;
 	this->vtx_z = vtx_z;
@@ -31,74 +31,74 @@ DEvent::DEvent(double vtx_x, double vtx_y, double vtx_z, unsigned nprim, unsigne
 	this->btof_multi = btof_multi;
 }
 
-DEvent::~DEvent() {}
+Event::~Event() {}
 
 
 // Getters
 
-double DEvent::get_vtx_x() {
+double Event::get_vtx_x() {
 	return(vtx_x);
 }
 
-double DEvent::get_vtx_y() {
+double Event::get_vtx_y() {
 	return(vtx_y);
 }
 
-double DEvent::get_vtx_z() {
+double Event::get_vtx_z() {
 	return(vtx_z);
 }
 
-unsigned DEvent::get_nprim() {
+unsigned Event::get_nprim() {
 	return(nprim);
 }
 
-unsigned DEvent::get_run() {
+unsigned Event::get_run() {
 	return(run);
 }
 
-unsigned DEvent::get_ref2() {
+unsigned Event::get_ref2() {
 	return(ref2);
 }
 
-unsigned DEvent::get_btof_multi() {
+unsigned Event::get_btof_multi() {
 	return(btof_multi);
 }
 
 
 // Setters
 
-void DEvent::set_vtx_x(double vtx_x) {
+void Event::set_vtx_x(double vtx_x) {
 	this->vtx_x = vtx_x;
 }
 
-void DEvent::set_vtx_y(double vtx_y) {
+void Event::set_vtx_y(double vtx_y) {
 	this->vtx_y = vtx_y;
 }
 
-void DEvent::set_vtx_z(double vtx_z) {
+void Event::set_vtx_z(double vtx_z) {
 	this->vtx_z = vtx_z;
 }
 
-void DEvent::set_nprim(unsigned nprim) {
+void Event::set_nprim(unsigned nprim) {
 	this->nprim = nprim;
 }
 
-void DEvent::set_run(unsigned run) {
+void Event::set_run(unsigned run) {
 	this->run = run;
 }
 
-void DEvent::set_ref2(unsigned ref2) {
+void Event::set_ref2(unsigned ref2) {
 	this->ref2 = ref2;
 }
 
-void DEvent::set_btof_multi(unsigned btof_multi) {
+void Event::set_btof_multi(unsigned btof_multi) {
 	this->btof_multi = btof_multi;
 }
 
 
 // Doers
 
-void DEvent::set_event(double vtx_x, double vtx_y, double vtx_z, unsigned nprim, unsigned run, unsigned ref2, unsigned btof_multi) {
+void Event::set_event(double vtx_x, double vtx_y, double vtx_z, unsigned nprim, unsigned run, unsigned ref2, unsigned btof_multi) {
 	this->vtx_x = vtx_x;
 	this->vtx_y = vtx_y;
 	this->vtx_z = vtx_z;
@@ -108,7 +108,7 @@ void DEvent::set_event(double vtx_x, double vtx_y, double vtx_z, unsigned nprim,
 	this->btof_multi = btof_multi;
 }
 
-void DEvent::clear() {
+void Event::clear() {
 	vtx_x = 0;
 	vtx_y = 0;
 	vtx_z = 0;

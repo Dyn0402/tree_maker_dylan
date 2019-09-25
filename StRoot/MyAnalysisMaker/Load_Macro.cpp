@@ -8,7 +8,7 @@
 
 
 int Load_Macro(TString InputFileList, TString OutputDir, int energy) {
-	gROOT->ProcessLine(".L DEvent.cpp+");
+	gROOT->ProcessLine(".L Event.cpp+");
 	gROOT->ProcessLine(".L Track.cpp+");
 	gROOT->ProcessLine(".L Class_Test.cpp+");
 	ostringstream energy_str;

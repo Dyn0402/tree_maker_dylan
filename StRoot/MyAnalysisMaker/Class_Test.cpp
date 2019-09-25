@@ -10,7 +10,7 @@
 #include "TROOT.h"
 
 #include "Track.h"
-#include "DEvent.h"
+#include "Event.h"
 
 
 using namespace std;
@@ -21,7 +21,7 @@ void real_tree_test();
 
 
 int Class_Test(TString InputFileList, TString OutputDir, int energy) {
-//	gROOT->ProcessLine(".L DEvent.cpp+");
+//	gROOT->ProcessLine(".L Event.cpp+");
 //	gROOT->ProcessLine(".L Track.cpp+");
 //	vec_tree_test();
 	cout << "InputFileList: " << InputFileList << endl;
@@ -61,7 +61,7 @@ void real_tree_test() {
 
 	if(!file) { cout << "Could not open file" << endl; return; }
 
-	DEvent event;
+	Event event;
 	vector<Track> tracks;
 
 	TTree *tree = new TTree("test_tree", "Test Tree");
@@ -99,7 +99,7 @@ void real_tree_test() {
 //	Event *revent;
 //	vector<Track> *rtracks;
 
-	DEvent *revent = new DEvent;
+	Event *revent = new Event;
 	vector<Track> *rtracks = new vector<Track>;
 
 	TBranch* bevent = rtree->GetBranch("event");

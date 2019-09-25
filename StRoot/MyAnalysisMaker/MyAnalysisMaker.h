@@ -12,7 +12,7 @@
 #include "TH3F.h"
 #include "TVector2.h"
 #include "TVector3.h"
-#include "DEvent.h"
+#include "Event.h"
 #include "Track.h"
 
 using namespace std;
@@ -29,7 +29,7 @@ class TProfile2D    ;
 class TLorentzVector;
 class TTree;
 class TClonesArray;
-class DEvent;
+class Event;
 class Track;
 
 
@@ -60,7 +60,7 @@ private:
     StMuDstMaker      *mMuDstMaker;                   //  Make MuDst pointer available to member functions
     TFile*        histogram_output;                   //  Histograms outputfile pointer
 
-    DEvent* event;
+    Event* event;
     vector<Track>* track_vec;
     TTree* tree;
 
