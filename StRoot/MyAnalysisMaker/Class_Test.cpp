@@ -21,10 +21,14 @@ void real_event_tree_test();
 
 
 int Class_Test() {
-	gROOT->ProcessLine(".L Track.h");
-	gROOT->ProcessLine(".L Event.h");
-	gROOT->ProcessLine(".L Track.cpp");
-	gROOT->ProcessLine(".L Event.cpp");
+//	gROOT->ProcessLine(".L Track.h");
+//	gROOT->ProcessLine(".L Event.h");
+//	gROOT->ProcessLine(".L Track.cpp");
+//	gROOT->ProcessLine(".L Event.cpp");
+	gSystem->Load(".L Track.h");
+	gSystem->Load(".L Event.h");
+	gSystem->Load(".L Track.cpp");
+	gSystem->Load(".L Event.cpp");
 	real_event_tree_test();
 	cout << "donzo" << endl;
 	return(0);
