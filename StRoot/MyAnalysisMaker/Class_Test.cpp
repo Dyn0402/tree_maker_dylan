@@ -150,7 +150,7 @@ void real_tree_test() {
 
 void real_event_tree_test() {
 	// Write
-	TFile *file = new TFile("/home/dylan/Desktop/real_tree_test.root", "RECREATE");
+	TFile *file = new TFile("real_tree_test.root", "RECREATE");
 
 	if(!file) { cout << "Could not open file" << endl; return; }
 
@@ -191,7 +191,7 @@ void real_event_tree_test() {
 
 
 	// Read
-	TFile *rfile = new TFile("/home/dylan/Desktop/real_tree_test.root", "READ");
+	TFile *rfile = new TFile("real_tree_test.root", "READ");
 
 	if(!rfile) { cout << "Could not open file" << endl; return; }
 
