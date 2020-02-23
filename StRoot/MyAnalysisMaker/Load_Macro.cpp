@@ -6,6 +6,7 @@
 #include "TROOT.h"
 #include "TString.h"
 
+int Class_Test();
 
 
 int Load_Macro() {
