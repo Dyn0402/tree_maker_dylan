@@ -25,12 +25,12 @@ int Class_Test() {
 //	gROOT->ProcessLine(".L Event.h");
 //	gROOT->ProcessLine(".L Track.cpp");
 //	gROOT->ProcessLine(".L Event.cpp");
-	gSystem->Load("Track.h");
-	gSystem->Load("Event.h");
-	gSystem->Load("Track.cpp");
-	gSystem->Load("Event.cpp");
+//	gSystem->Load("Track.h");
+//	gSystem->Load("Event.h");
+//	gSystem->Load("Track.cpp");
+//	gSystem->Load("Event.cpp");
 	real_event_tree_test();
-	cout << "donzo" << endl;
+//	cout << "donzo" << endl;
 	return(0);
 }
 
