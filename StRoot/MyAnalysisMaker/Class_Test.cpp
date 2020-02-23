@@ -74,11 +74,11 @@ void real_event_tree_test() {
 		}
 		if(i == 100) {
 			cout << endl << "Event 100: " << endl;
-			for(auto t:tracks) { cout << t.get_pt() << endl; }
+			for(Track t:tracks) { cout << t.get_pt() << endl; }
 		}
 		if(i == 101) {
 			cout << endl << "Event 101: " << endl;
-			for(auto t:tracks) { cout << t.get_pt() << endl; }
+			for(Track t:tracks) { cout << t.get_pt() << endl; }
 		}
 		event.set_protons(tracks);
 		tree->Fill();
@@ -102,11 +102,11 @@ void real_event_tree_test() {
 
 	Event *revent = new Event;
 
-	auto bevent = rtree->GetBranch("event");
+	TBranch* bevent = rtree->GetBranch("event");
 
 	bevent->SetAddress(&revent);
 
-	auto nevent = rtree->GetEntries();
+	int nevent = rtree->GetEntries();
 	cout << nevent << endl;
 
 //	rtree->GetEvent(100);
