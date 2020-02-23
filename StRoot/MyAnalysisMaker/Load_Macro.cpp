@@ -10,11 +10,17 @@ int Class_Test();
 
 
 int Load_Macro() {
-	gSystem->Load("Track.h");
-	gSystem->Load("Event.h");
-	gSystem->Load("Track.cpp");
-	gSystem->Load("Event.cpp");
-	gSystem->Load("Class_Test.cpp");
+//	gSystem->Load("Track.h");
+//	gSystem->Load("Event.h");
+//	gSystem->Load("Track.cpp");
+//	gSystem->Load("Event.cpp");
+//	gSystem->Load("Class_Test.cpp");
+
+	gROOT->ProcessLine(".L Track.h");
+	gROOT->ProcessLine(".L Event.h");
+	gROOT->ProcessLine(".L Track.cpp");
+	gROOT->ProcessLine(".L Event.cpp");
+	gROOT->ProcessLine(".L Class_Test.cpp");
 
 	Class_Test();
 
