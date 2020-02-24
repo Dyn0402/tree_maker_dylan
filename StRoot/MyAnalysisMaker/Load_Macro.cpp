@@ -1,5 +1,6 @@
 //Dylan Edited 06/25/19
 
+#include <iostream>
 #include <string>
 #include <sstream>
 
@@ -7,6 +8,7 @@
 #include "TString.h"
 
 //int Class_Test();
+using namespace std;
 
 
 int Load_Macro() {
