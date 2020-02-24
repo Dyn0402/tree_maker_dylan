@@ -74,11 +74,11 @@ void real_event_tree_test() {
 		}
 		if(i == 100) {
 			cout << endl << "Event 100: " << endl;
-			for(Track t:tracks) { cout << t.get_pt() << endl; }
+			for(unsigned k=0; k<tracks.size(); k++) { cout << tracks[k].get_pt() << endl; }
 		}
 		if(i == 101) {
 			cout << endl << "Event 101: " << endl;
-			for(Track t:tracks) { cout << t.get_pt() << endl; }
+			for(unsigned k=0; k<tracks.size(); k++) { cout << tracks[k].get_pt() << endl; }
 		}
 		event.set_protons(tracks);
 		tree->Fill();
