@@ -18,6 +18,8 @@
       <File>file:/star/u/dneff/git/tree_maker_dylan/readMuDst.C</File>
       <File>file:/star/u/dneff/git/tree_maker_dylan/StRoot/MyAnalysisMaker/Track.cpp</File>
       <File>file:/star/u/dneff/git/tree_maker_dylan/StRoot/MyAnalysisMaker/Event.cpp</File>
+      <File>file:/star/u/dneff/git/tree_maker_dylan/StRoot/MyAnalysisMaker/Track.h</File>
+      <File>file:/star/u/dneff/git/tree_maker_dylan/StRoot/MyAnalysisMaker/Event.h</File>
     </Package>
   </SandBox>
 
