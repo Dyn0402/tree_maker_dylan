@@ -1,14 +1,9 @@
-//#include "./StRoot/MyAnalysisMaker/Event.h"
-//#include "./StRoot/MyAnalysisMaker/Track.h"
 
-//#ifdef __MAKECINT__
-//#pragma link C++ class vector<Track>+;
-//#endif
 
 void readMuDst(TString InputFileList, TString OutputDir, int energy)
 {
     
-    Int_t nFiles = 1e+3;
+    Int_t nFiles = 1e+4;
     
     // Load libraries
     gROOT ->Macro("loadMuDst.C");
@@ -21,15 +16,10 @@ void readMuDst(TString InputFileList, TString OutputDir, int energy)
     gSystem->Load("MyAnalysisMaker") ;
     //    gSystem->Load("StRefMultCorr");
     gSystem->Load("StBTofUtil");
-//    gSystem->Load(".StRoot/MyAnalysisMaker/Track_cpp.so");
-//    gSystem->Load(".StRoot/MyAnalysisMaker/Event_cpp.so");
-//    gInterpreter->GenerateDictionary("Event", "Event.h");
-//    gInterpreter->GenerateDictionary("Track", "Track.h");
-//    gInterpreter->GenerateDictionary("vector<Track>", "Track.h;vector");
     
     // List of member links in the chain
     StChain*                    chain  =  new StChain ;
-    StMuDstMaker*          muDstMaker  =  new StMuDstMaker(0,0,"",InputFileList,"MuDst",nFiles) ;
+    StMuDstMaker*          muDstMaker  =  new StMuDstMaker(0,0,"",InputFileList,"",nFiles) ;
     MyAnalysisMaker*    AnalysisCode   =  new MyAnalysisMaker(muDstMaker) ;
 
     // Turn off everything but Primary tracks in order to speed up the analysis and eliminate IO
@@ -42,12 +32,11 @@ void readMuDst(TString InputFileList, TString OutputDir, int energy)
     AnalysisCode -> SetOutputFileName(OutputDir) ;
     AnalysisCode -> SetEnergy(energy) ;
     
-//    Int_t nEvents = 1e5;
-    Int_t nEvents = -1;
+    Int_t nEvents = 1e5;
     
     nEvents = muDstMaker->chain()->GetEntries();
     
-    cout<<"\n############################ Total Event in chain = "<<nEvents<<" ############################\n "<<endl;
+    cout<<"\n############################ Total Event in chain = "<<nEvents<< " fast entries = " << muDstMaker->chain()->GetEntriesFast() << "############################\n "<<endl;
     
     // Loop over the links in the chain
     

@@ -1,8 +1,6 @@
 #ifndef MyAnalysisMaker_def
 #define MyAnalysisMaker_def
 
-#include <vector>
-
 #include "StMuDSTMaker/COMMON/StMuTrack.h"
 #include "StMuDSTMaker/COMMON/StMuEvent.h"
 #include "StMaker.h"
@@ -12,16 +10,12 @@
 #include "TH3F.h"
 #include "TVector2.h"
 #include "TVector3.h"
-#include "Event.h"
 #include "Track.h"
-
-using namespace std;
+#include "Event.h"
 
 class StMuDstMaker  ;
 class TFile         ;
-class TH1F          ;
-class TH2F          ;
-class TH3F          ;
+class TH1I          ;
 class TString       ;
 class TVector2      ;
 class TProfile      ;
@@ -30,7 +24,6 @@ class TLorentzVector;
 class TTree;
 class TClonesArray;
 class Event;
-class Track;
 
 
 
@@ -60,11 +53,14 @@ private:
     StMuDstMaker      *mMuDstMaker;                   //  Make MuDst pointer available to member functions
     TFile*        histogram_output;                   //  Histograms outputfile pointer
 
-    Event* event;
-    vector<Track>* track_vec;
-    TTree* tree;
 
-    
+    Event* event;
+    TTree* tree;
+    TH1I* event_cut_hist;
+	TH1I* track_cut_hist;
+
+
+	UInt_t        mEventsRead;                   //  Number of Events read
     UInt_t        mEventsProcessed;                   //  Number of Events read and processed
     TString         OutputFileName;                   //  Name of the histogram output file
     
