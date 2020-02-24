@@ -42,6 +42,7 @@ public:
     Int_t Finish  ( ) ;                              //  Finish the analysis, close files, and clean up.
     
     void SetEnergy(int energy_in);
+    void SetRefNum(int ref_num_in);
 
     Bool_t IsBadEvent(StMuEvent *muEvent);
     Bool_t IsBadTrack(StMuTrack * track);
@@ -65,15 +66,14 @@ private:
     TString         OutputFileName;                   //  Name of the histogram output file
     
     Double_t            VertexZPos;
-    Float_t                     Pi;
-    Float_t                  twoPi;
     Float_t               VpdVzPos;
     Int_t                  trigger;
     Int_t                cent_flag;
     Int_t                runnumber;
-    Int_t                 refmult2;
+    Int_t                 refmultn;
     
     int						energy;
+    int					   ref_num;
 
     char name[60];
     

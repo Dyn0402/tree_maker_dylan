@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE note [
-<!ENTITY energy "11">
-<!ENTITY prod "P10ih">
+<!ENTITY energy "19">
+<!ENTITY refnum "3">
+<!ENTITY prod "P11id">
 <!ENTITY trig_sufix "">
 ]>
 <job simulateSubmission ="false" maxFilesPerProcess="10"  fileListSyntax="xrootd">
   
   <command>
       starver pro
-      root4star -l -b -q readMuDst.C\(\"$FILELIST\",\"auau_$JOBID.root\",&energy;\)
+      root4star -l -b -q readMuDst.C\(\"$FILELIST\",\"auau_$JOBID.root\",&energy;,&refnum;\)
   </command>
 
   
@@ -24,16 +25,16 @@
   </SandBox>
 
 <input URL="catalog:star.bnl.gov?production=&prod;,trgsetupname=AuAu&energy;_production&trig_sufix;,storage=HPSS,filetype=daq_reco_MuDst,filename~st_physics,sanity=1" nFiles="all" />
-  <stderr URL="file:/gpfs01/star/pwg/dneff/scratch/trees/log/&energy;GeV/err_&energy;GeV$JOBID.err"></stderr>
-  <stdout URL="file:/gpfs01/star/pwg/dneff/scratch/trees/log/&energy;GeV/log_&energy;GeV$JOBID.out" />
+  <stderr URL="file:/gpfs01/star/pwg/dneff/scratch/trees_ref&refnum;/log/&energy;GeV/err_&energy;GeV$JOBID.err"></stderr>
+  <stdout URL="file:/gpfs01/star/pwg/dneff/scratch/trees_ref&refnum;/log/&energy;GeV/log_&energy;GeV$JOBID.out" />
 
-    <output fromScratch="*.root" toURL="file:/gpfs01/star/pwg/dneff/scratch/trees/output/&energy;GeV/" />
-    <output fromScratch="*.log" toURL="file:/gpfs01/star/pwg/dneff/scratch/trees/log/" />
+    <output fromScratch="*.root" toURL="file:/gpfs01/star/pwg/dneff/scratch/trees_ref&refnum;/output/&energy;GeV/" />
+    <output fromScratch="*.log" toURL="file:/gpfs01/star/pwg/dneff/scratch/trees_ref&refnum;/log/" />
  
   <Generator>
-    <Location>/gpfs01/star/pwg/dneff/scratch/trees/log/</Location>
-    <ScriptLocation>/gpfs01/star/pwg/dneff/scratch/trees/script/11GeV/</ScriptLocation>
-    <ListLocation>/gpfs01/star/pwg/dneff/scratch/trees/list/11GeV/</ListLocation>
+    <Location>/gpfs01/star/pwg/dneff/scratch/trees_ref3/log/</Location>
+    <ScriptLocation>/gpfs01/star/pwg/dneff/scratch/trees_ref3/script/19GeV/</ScriptLocation>
+    <ListLocation>/gpfs01/star/pwg/dneff/scratch/trees_ref3/list/19GeV/</ListLocation>
   </Generator>
   
 </job>

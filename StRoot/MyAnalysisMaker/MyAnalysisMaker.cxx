@@ -40,6 +40,8 @@ MyAnalysisMaker::MyAnalysisMaker(StMuDstMaker* maker) : StMaker("MyAnalysisMaker
     mEventsRead = 0     ;                    // Zero the Number of Events read by the maker
     mEventsProcessed = 0     ;                    // Zero the Number of Events processed by the maker
     OutputFileName = "" ;                         // Output File Name( will be set inside the "readMuDst".C )
+    energy = 0 ;                                  // Beam energy of dataset
+    ref_num = 0 ;                                 // Which reference multiplicity definition used. Refmult2, refmult3, etc.
 }
 
 
@@ -51,8 +53,6 @@ Int_t MyAnalysisMaker::Init()
 {
     //----------------------------------------
     runnumber        =      -999;  //just a no.
-    Pi               =   3.14159;
-    twoPi            =   6.28318;
     
     //-----------------------------------------------------------------------------------------
     histogram_output = new TFile(OutputFileName,"RECREATE") ;  //
@@ -96,6 +96,9 @@ void MyAnalysisMaker::SetEnergy(int energy_in) {
 	energy = energy_in;
 }
 
+void MyAnalysisMaker::SetRefNum(int ref_num_in) {
+	ref_num = ref_num_in;
+}
 
 Bool_t MyAnalysisMaker::IsBadEvent(StMuEvent *muEvent)
 {
@@ -234,11 +237,11 @@ Int_t MyAnalysisMaker::Make()
     
     int nHitsFit, nHitsDedx;
     float ratio, dca, eta, pt, nsigmapr, phi, charge, Qx, Qy;
-    double beta, p;
+    double beta, p, m;
 
     vector<Track> proton_tracks;
 
-    refmult2 = 0;
+    refmultn = 0;
     Qx = 0; Qy = 0;
     
     TObjArray* tracks = mMuDstMaker->muDst()->primaryTracks() ;    // Create a TObject array containing the primary tracks
@@ -271,15 +274,40 @@ Int_t MyAnalysisMaker::Make()
 		phi = track->phi();
 		nsigmapr = track->nSigmaProton();
 		nHitsDedx = track->nHitsDedx();
-		if(phi < 0) phi = phi + twoPi;
+		if(phi < 0) phi = phi + 2 * TMath::Pi();
 
-        if(nHitsFit > 10 && dca < 3.0 && fabs(eta) > 0.5 && fabs(eta) < 1.0) refmult2++;
+		beta = -999;
+		beta = track->btofPidTraits().beta();
+		m = -999;
+		if(beta > 1.e-5) { m = p*p*(1./(beta*beta) - 1.); }
 
-		if(nHitsFit > 15 && dca < 2.0 && fabs(eta) < 1. && pt > 0.2 && pt < 2.) {
-			if(fabs(eta) > 0.5 || (energy == 27 && nsigmapr > 1.2) || (energy != 27 && nsigmapr > 2.2) || nHitsFit <= 5) {
-				Qx = Qx + cos(2*phi); Qy = Qy + sin(2*phi);
+		if(ref_num == 2) {
+
+			if(nHitsFit > 10 && dca < 3.0 && fabs(eta) > 0.5 && fabs(eta) < 1.0) refmultn++;
+
+			if(nHitsFit > 15 && dca < 2.0 && fabs(eta) < 1.0 && pt > 0.2 && pt < 2.) {
+				if(fabs(eta) > 0.5 || (energy == 27 && nsigmapr < 1.2) || (energy != 27 && nsigmapr < 2.2) || nHitsFit <= 5) {
+					Qx = Qx + cos(2*phi); Qy = Qy + sin(2*phi);
+				}
 			}
-		}
+
+			if(fabs(eta) > 0.5) continue;
+
+		} else if(ref_num == 3) {
+
+			if(nHitsFit > 10 && dca < 3.0 && fabs(eta) < 1.0 && m < 0.4 && nsigmapr < -3.0) refmultn++;
+
+			if(nHitsFit > 15 && dca < 2.0 && fabs(eta) < 1.0 && pt > 0.2 && pt < 2.) {
+				if((energy == 27 && nsigmapr < 1.2) || (energy != 27 && nsigmapr < 2.2) || nHitsFit <= 5) {
+					Qx = Qx + cos(2*phi); Qy = Qy + sin(2*phi);
+				}
+			}
+
+			if(fabs(eta) > 1.0) continue;
+
+		} else { cout << "Bad ref_num!!" << endl; continue; }
+
+		track_cut_hist->Fill("eta", 1);
 
 		if(nHitsFit < 20) continue;
 		track_cut_hist->Fill("nHitsFit", 1);
@@ -290,8 +318,6 @@ Int_t MyAnalysisMaker::Make()
         if(energy == 27 && fabs(nsigmapr) > 1.2) continue;
         track_cut_hist->Fill("nsigmaproton", 1);
         
-        if(fabs(eta) > 0.5) continue;
-        track_cut_hist->Fill("eta", 1);
         if(dca < 0 || dca > 2.2) continue;
         track_cut_hist->Fill("dca", 1);
 
@@ -301,9 +327,6 @@ Int_t MyAnalysisMaker::Make()
         track_cut_hist->Fill("pt_high", 1);
         // Cuts selecting relevant protons----------------------
         
-        beta = -999;
-        beta = track->btofPidTraits().beta();
-        
         proton_tracks.push_back(Track(pt, p, phi, eta, dca, nsigmapr, beta, charge));
 
     }//==================track loop ends=========================
@@ -311,7 +334,7 @@ Int_t MyAnalysisMaker::Make()
     TVector2 Q(Qx,Qy);
     double EventPlane = 0.5 * Q.Phi();
     
-    event->set_event(muEvent->primaryVertexPosition().x(), muEvent->primaryVertexPosition().y(), muEvent->primaryVertexPosition().z(), muEvent->refMult(), runnumber, refmult2, muEvent->btofTrayMultiplicity(), EventPlane);
+    event->set_event(muEvent->primaryVertexPosition().x(), muEvent->primaryVertexPosition().y(), muEvent->primaryVertexPosition().z(), muEvent->refMult(), runnumber, refmultn, muEvent->btofTrayMultiplicity(), EventPlane);
     event->set_protons(proton_tracks);
     
     //fill tree
