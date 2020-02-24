@@ -17,6 +17,9 @@ void readMuDst(TString InputFileList, TString OutputDir, int energy)
     //    gSystem->Load("StRefMultCorr");
     gSystem->Load("StBTofUtil");
     
+    gROOT->ProcessLine(".L Track.cpp+");
+	gROOT->ProcessLine(".L Event.cpp+");
+
     // List of member links in the chain
     StChain*                    chain  =  new StChain ;
     StMuDstMaker*          muDstMaker  =  new StMuDstMaker(0,0,"",InputFileList,"",nFiles) ;
