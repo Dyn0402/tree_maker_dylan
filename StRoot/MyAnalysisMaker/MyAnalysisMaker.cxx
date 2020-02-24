@@ -236,9 +236,8 @@ Int_t MyAnalysisMaker::Make()
     float ratio, dca, eta, pt, nsigmapr, phi, charge, Qx, Qy;
     double beta, p;
 
-    vector<Track> tracks;
+    vector<Track> proton_tracks;
 
-    int protonp = 0;
     refmult2 = 0;
     Qx = 0; Qy = 0;
     
@@ -305,7 +304,7 @@ Int_t MyAnalysisMaker::Make()
         beta = -999;
         beta = track->btofPidTraits().beta();
         
-        tracks.push_back(Track(pt, p, phi, eta, dca, nsigmapr, beta, charge));
+        proton_tracks.push_back(Track(pt, p, phi, eta, dca, nsigmapr, beta, charge));
 
     }//==================track loop ends=========================
 
@@ -313,7 +312,7 @@ Int_t MyAnalysisMaker::Make()
     double EventPlane = 0.5 * Q.Phi();
     
     event->set_event(muEvent->primaryVertexPosition().x(), muEvent->primaryVertexPosition().y(), muEvent->primaryVertexPosition().z(), muEvent->refMult(), runnumber, refmult2, muEvent->btofTrayMultiplicity(), EventPlane);
-    event->set_protons(tracks);
+    event->set_protons(proton_tracks);
     
     //fill tree
     tree->Fill();
