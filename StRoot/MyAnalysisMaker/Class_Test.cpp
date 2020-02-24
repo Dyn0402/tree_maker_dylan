@@ -64,7 +64,7 @@ void real_event_tree_test() {
 	TRandom3 *r = new TRandom3(0);
 
 	for(int i=0; i<10000; i++) {
-		event.set_event(r->Gaus(0,5), r->Gaus(0,4), r->Gaus(1, 6), (unsigned) r->Gaus(20,2), (unsigned) r->Gaus(40,3), (unsigned) r->Gaus(60,5), (unsigned) r->Gaus(80,7));
+		event.set_event(r->Gaus(0,5), r->Gaus(0,4), r->Gaus(1, 6), (unsigned) r->Gaus(20,2), (unsigned) r->Gaus(40,3), (unsigned) r->Gaus(60,5), (unsigned) r->Gaus(80,7), r->Gaus(0,3));
 		vector<Track> tracks;
 		for(int j=0; j<r->Gaus(15, 0.5); j++) {
 			Track track;
