@@ -72,19 +72,20 @@ Int_t MyAnalysisMaker::Init()
     event_cut_hist->GetXaxis()->SetBinLabel(7, "Vertex Non-Zero");
     event_cut_hist->GetXaxis()->SetBinLabel(8, "Good VPD Vz");
 
-	track_cut_hist = new TH1I("Track Cut Hist", "Track Cut Hist", 12, -0.5, 11.5);
+	track_cut_hist = new TH1I("Track Cut Hist", "Track Cut Hist", 13, -0.5, 12.5);
 	track_cut_hist->GetXaxis()->SetBinLabel(1, "Original");
 	track_cut_hist->GetXaxis()->SetBinLabel(2, "Charge");
 	track_cut_hist->GetXaxis()->SetBinLabel(3, "p_low");
 	track_cut_hist->GetXaxis()->SetBinLabel(4, "ratio_low");
 	track_cut_hist->GetXaxis()->SetBinLabel(5, "ratio_high");
-	track_cut_hist->GetXaxis()->SetBinLabel(6, "nHitsFit");
-	track_cut_hist->GetXaxis()->SetBinLabel(7, "nHitsDedx");
-	track_cut_hist->GetXaxis()->SetBinLabel(8, "nsigmaproton");
-	track_cut_hist->GetXaxis()->SetBinLabel(9, "eta");
-	track_cut_hist->GetXaxis()->SetBinLabel(10, "dca");
-	track_cut_hist->GetXaxis()->SetBinLabel(11, "pt_low");
-	track_cut_hist->GetXaxis()->SetBinLabel(12, "pt_high");
+	track_cut_hist->GetXaxis()->SetBinLabel(6, "eta");
+	track_cut_hist->GetXaxis()->SetBinLabel(7, "Charge_Plus");
+	track_cut_hist->GetXaxis()->SetBinLabel(8, "nHitsFit");
+	track_cut_hist->GetXaxis()->SetBinLabel(9, "nHitsDedx");
+	track_cut_hist->GetXaxis()->SetBinLabel(10, "nsigmaproton");
+	track_cut_hist->GetXaxis()->SetBinLabel(11, "dca");
+	track_cut_hist->GetXaxis()->SetBinLabel(12, "pt_low");
+	track_cut_hist->GetXaxis()->SetBinLabel(13, "pt_high");
 
 	VertexZPos = -100.0;
     VpdVzPos   = -100.0;
@@ -286,7 +287,7 @@ Int_t MyAnalysisMaker::Make()
 			if(nHitsFit > 10 && dca < 3.0 && fabs(eta) > 0.5 && fabs(eta) < 1.0) refmultn++;
 
 			if(nHitsFit > 15 && dca < 2.0 && fabs(eta) < 1.0 && pt > 0.2 && pt < 2.) {
-				if(fabs(eta) > 0.5 || (energy == 27 && nsigmapr < 1.2) || (energy != 27 && nsigmapr < 2.2) || nHitsFit <= 5) {
+				if(fabs(eta) > 0.5 || (energy == 27 && fabs(nsigmapr) > 1.2) || (energy != 27 && fabs(nsigmapr) > 2.2) || nHitsFit <= 5) {
 					Qx = Qx + cos(2*phi); Qy = Qy + sin(2*phi);
 				}
 			}
@@ -298,7 +299,7 @@ Int_t MyAnalysisMaker::Make()
 			if(nHitsFit > 10 && dca < 3.0 && fabs(eta) < 1.0 && m < 0.4 && nsigmapr < -3.0) refmultn++;
 
 			if(nHitsFit > 15 && dca < 2.0 && fabs(eta) < 1.0 && pt > 0.2 && pt < 2.) {
-				if((energy == 27 && nsigmapr < 1.2) || (energy != 27 && nsigmapr < 2.2) || nHitsFit <= 5) {
+				if((energy == 27 && fabs(nsigmapr) > 1.2) || (energy != 27 && fabs(nsigmapr) > 2.2) || nHitsFit <= 5) {
 					Qx = Qx + cos(2*phi); Qy = Qy + sin(2*phi);
 				}
 			}
@@ -308,6 +309,9 @@ Int_t MyAnalysisMaker::Make()
 		} else { cout << "Bad ref_num!!" << endl; continue; }
 
 		track_cut_hist->Fill("eta", 1);
+
+		if(charge != 1) continue;
+		track_cut_hist->Fill("Charge_Plus", 1);
 
 		if(nHitsFit < 20) continue;
 		track_cut_hist->Fill("nHitsFit", 1);
