@@ -5,13 +5,14 @@
  *      Author: Dylan Neff
  */
 
-#ifndef EVENT_H_
-#define EVENT_H_
+#ifndef ROOT_Event
+#define ROOT_Event
 
 
 #include <vector>
 
 #include <TLeaf.h>
+#include <TObject.h>
 
 #include "Track.h"
 
@@ -21,7 +22,7 @@ using namespace std;
 struct tree_leaves {
 	TLeaf *run;
 	TLeaf *ref_mult;
-	TLeaf *ref_multn;
+	TLeaf *ref_mult2;
 	TLeaf *btof;
 	TLeaf *vx;
 	TLeaf *vy;
@@ -39,11 +40,12 @@ struct tree_leaves {
 };
 
 
-class Event {
+class Event : public TObject {
 public:
 	// Structors
 	Event();
 	Event(tree_leaves leaves);
+	Event(Event *event);
 	~Event();
 
 	// Getters
@@ -70,9 +72,12 @@ public:
 
 	// Doers
 	void read_tree_event(tree_leaves leaves);
+	void read_tree_event(Event *event);
 	void set_event(double vx, double vy, double vz, unsigned ref, unsigned run, unsigned refn, unsigned btof, double event_plane);
 	void clear();
 	void pile_up(Event pile);
+
+	ClassDef(Event, 1);
 
 private:
 	vector<Track> protons;

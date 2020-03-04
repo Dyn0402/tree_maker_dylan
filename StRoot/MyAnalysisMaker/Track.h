@@ -5,11 +5,13 @@
  *      Author: Dylan Neff
  */
 
-#ifndef TRACK_H_
-#define TRACK_H_
+#ifndef ROOT_Track
+#define ROOT_Track
+
+#include <TObject.h>
 
 
-class Track {
+class Track : public TObject {
 public:
 	Track();
 	Track(double pt, double p, double phi, double eta, float dca, double nsigma, float beta, short charge);
@@ -35,6 +37,8 @@ public:
 
 	void set_track(double pt, double p, double phi, double eta, float dca, double nsigma, float beta, short charge);
 	void clear();
+
+	ClassDef(Track, 1);
 
 private:
 	double pt;
